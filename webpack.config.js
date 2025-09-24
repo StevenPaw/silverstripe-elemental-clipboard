@@ -4,15 +4,24 @@ const { JavascriptWebpackConfig, CssWebpackConfig } = require('@silverstripe/web
 const PATHS = {
   ROOT: Path.resolve(),
   SRC: Path.resolve('client/src'),
+  ELEMENTAL: Path.resolve('vendor/dnadesign/silverstripe-elemental/client/src'),
 };
 
 const config = [
   // main JS bundle
-  new JavascriptWebpackConfig('js', PATHS)
-    .setEntry({
-      bundle: `${PATHS.SRC}/bundles/bundle.js`,
-    })
-    .getConfig(),
+  (() => {
+    const jsConfig = new JavascriptWebpackConfig('js', PATHS)
+      .setEntry({
+        bundle: `${PATHS.SRC}/bundles/bundle.js`,
+      })
+      .getConfig();
+
+    jsConfig.resolve = jsConfig.resolve || {};
+    jsConfig.resolve.alias = jsConfig.resolve.alias || {};
+    jsConfig.resolve.alias['elemental'] = PATHS.ELEMENTAL;
+
+    return jsConfig;
+  })(),
   // sass to css
   new CssWebpackConfig('css', PATHS)
     .setEntry({

@@ -1,1 +1,18 @@
-# see https://docs.silverstripe.org/en/developer_guides/configuration/configuration/
+---
+Name: stevenpaw-silverstripe-elemental-clipboard
+---
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_javascript:
+    - 'stevenpaw/silverstripe-elemental-clipboard:client/dist/js/bundle.js'
+  extra_requirements_css:
+    - 'stevenpaw/silverstripe-elemental-clipboard:client/dist/styles/bundle.css'
+  extra_requirements_i18n:
+    - 'stevenpaw/silverstripe-elemental-clipboard:client/lang'
+
+DNADesign\Elemental\Models\BaseElement:
+  extensions:
+    - StevenPaw\SilverStripeElementalClipboard\Extensions\ElementalExtension
+
+DNADesign\Elemental\Models\ElementalArea:
+  extensions:
+    - StevenPaw\SilverStripeElementalClipboard\Extensions\ElementalAreaExtension

@@ -22,7 +22,7 @@
   "devDependencies": {
     "@babel/runtime": "^7.20.0",
     "@silverstripe/eslint-config": "^1.0.0",
-    "@silverstripe/webpack-config": "^2.0.0",
+    "@silverstripe/webpack-config": "github:silverstripe/webpack-config",
     "@testing-library/react": "^14.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",

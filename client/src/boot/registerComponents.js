@@ -1,9 +1,15 @@
+
 import Injector from 'lib/Injector';
-import ExampleComponent from 'components/ExampleComponent/ExampleComponent';
+import CopyElementAction from 'components/ElementActions/CopyElementAction';
 
 export default () => {
-  Injector.component.registerMany({
-    // List your React components here so Injector is aware of them
-    ExampleComponent
+  // Add CopyElementAction as an extra button to ElementActions
+  Injector.transform('element-actions', (updater) => {
+    updater.component('ElementActions', (OriginalActions) => (props) => (
+      <>
+        <OriginalActions {...props} />
+        {props.element && <CopyElementAction element={props.element} />}
+      </>
+    ));
   });
 };
